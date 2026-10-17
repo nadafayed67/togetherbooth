@@ -145,10 +145,12 @@ const iceServers = [
   },
 ];
 
-pc = new RTCPeerConnection({ iceServers });
+  pc = new RTCPeerConnection({ iceServers: iceServers });
 
   pc.onicecandidate = event => {
-    if (event.candidate) signal({kind:"ice", candidate:event.candidate});
+    if (event.candidate) {
+      signal({ kind: "ice", candidate: event.candidate });
+    }
   };
 
   pc.ontrack = event => {
