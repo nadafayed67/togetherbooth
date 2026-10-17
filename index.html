@@ -118,6 +118,12 @@ function updateButtons() {
   downloadButton.disabled = photos.length === 0;
 }
 
+// Re-check the photo button when either camera actually becomes ready.
+localVideo.addEventListener("loadeddata", updateButtons);
+localVideo.addEventListener("playing", updateButtons);
+remoteVideo.addEventListener("loadeddata", updateButtons);
+remoteVideo.addEventListener("playing", updateButtons);
+
 function buildPeer() {
 const iceServers = [
   {
