@@ -119,9 +119,31 @@ function updateButtons() {
 }
 
 function buildPeer() {
-  pc = new RTCPeerConnection({
-    iceServers: [{urls: "stun:stun.l.google.com:19302"}]
-  });
+const iceServers = [
+  {
+    urls: "stun:stun.relay.metered.ca:80",
+  },
+  {
+    urls: "turn:global.relay.metered.ca:80",
+    username: "4c2765e77b40d8275c1faaaa",
+    credential: "5Vn3LoIN6ml0kyMQ",
+  },
+  {
+    urls: "turn:global.relay.metered.ca:80?transport=tcp",
+    username: "4c2765e77b40d8275c1faaaa",
+    credential: "5Vn3LoIN6ml0kyMQ",
+  },
+  {
+    urls: "turn:global.relay.metered.ca:443",
+    username: "4c2765e77b40d8275c1faaaa",
+    credential: "5Vn3LoIN6ml0kyMQ",
+  },
+  {
+    urls: "turns:global.relay.metered.ca:443?transport=tcp",
+    username: "4c2765e77b40d8275c1faaaa",
+    credential: "5Vn3LoIN6ml0kyMQ",
+  },
+];
 
   pc.onicecandidate = event => {
     if (event.candidate) signal({kind:"ice", candidate:event.candidate});
