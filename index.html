@@ -145,6 +145,8 @@ const iceServers = [
   },
 ];
 
+pc = new RTCPeerConnection({ iceServers });
+
   pc.onicecandidate = event => {
     if (event.candidate) signal({kind:"ice", candidate:event.candidate});
   };
